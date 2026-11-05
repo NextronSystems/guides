@@ -76,7 +76,7 @@ New here? Start with [Credentials](docs/01-credentials.md). Terms, rules and all
 4. **Server or workstation only matters if you have THOR Workstation contracts.** A server license is valid on any system. Ask for a workstation license to use up THOR Workstation contracts first.
 5. **Asking twice is safe.** The license request in this guide returns the existing license of a host instead of issuing a second one, as long as you ask with the same type and contracts.
 
-## What's in this repository
+## What's in this guide
 
 ```
 docs/
@@ -97,4 +97,4 @@ scripts/
 
 ## Feedback
 
-Something unclear, wrong or missing? Please open an issue in this repository.
+Something unclear, wrong or missing? Please [open an issue](https://github.com/NextronSystems/guides/issues/new) in the guides repository and mention the Customer Portal API guide.

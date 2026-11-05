@@ -1,0 +1,5 @@
+# Never commit license files or results that list hosts
+*.lic
+licenses.zip
+result.json
+result.csv

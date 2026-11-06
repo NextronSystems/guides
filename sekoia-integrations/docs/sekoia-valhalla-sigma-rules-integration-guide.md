@@ -117,13 +117,17 @@ Each sync updates an imported rule to the current Valhalla version. What happens
 | Parameters | Detection logic |
 | Event fields | Severity |
 | Similarity strategy | Tags |
-| Validity | |
+| Effort | Alert type |
+| Validity | False positives |
+| Deprecation message | |
 | Threats you linked | |
 | Alert filters | |
 
-So you can scope a rule to entities or assets, tune it with alert filters, or set its parameters without losing Valhalla updates.
+So you can scope a rule to entities or assets, tune it with alert filters, or set its parameters without losing Valhalla updates. A rule that is already up to date isn't updated at all.
 
-To keep changes to the **content** (name, description, detection, severity, tags), add the rule to **Preserve rule names**:
+If you save a setting while a sync is running, that sync can still overwrite it. Save it again after the sync.
+
+To keep changes to the **content** (name, description, detection, severity, tags, alert type, false positives), add the rule to **Preserve rule names**:
 
 - Put one entry per line.
 - An entry matches the rule's **name** as shown in the Rules Catalog, or one of its **tags**.
@@ -140,10 +144,12 @@ After every sync the trigger sends a `valhalla-sigma-catalog-sync` event to the 
 |---|---|
 | `total_rules` | Number of rules in the Valhalla feed. |
 | `created` / `updated` | Rules created or updated in this sync. |
+| `unchanged` | Imported rules that were already up to date, so nothing was sent. |
 | `preserved` | Rules not updated because they're on the preserve list. |
 | `failed` | Rules that couldn't be created or updated. |
 | `skipped_filter` | Rules below your minimum level or status. |
 | `skipped_unmapped` | Rules skipped because a field couldn't be converted. |
+| `skipped_no_id` | Feed rules skipped because they have no Valhalla ID. This should stay 0. |
 | `top_unmapped` | The most common reasons for `skipped_unmapped`. |
 | `stale` | Imported rules that keep their current version because the new version couldn't be converted. The log names up to five of them. |
 | `re_enabled` / `reenable_failed` | Rules enabled again because they came back to the feed, or that couldn't be enabled. |
@@ -189,10 +195,11 @@ No. The integration finds the rules it imported earlier through their tags and u
 Turn off the playbook, filter the Rules Catalog by the tag `nextron-valhalla` and delete the rules there.
 
 **Why are some rules from the feed missing?**
-There are three possible reasons:
+There are four possible reasons:
 
 - they're below your minimum level or status (`skipped_filter`);
 - one of their fields couldn't be converted (`skipped_unmapped`);
+- they have no Valhalla ID (`skipped_no_id`);
 - Sekoia rejected the request (`failed`). The first failure of each sync is logged with the error.
 
 **What happens if the new version of an imported rule can't be converted?**

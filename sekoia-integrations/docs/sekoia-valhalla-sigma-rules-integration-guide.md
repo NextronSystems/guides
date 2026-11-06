@@ -85,7 +85,7 @@ Every imported rule is a normal Sekoia catalog rule and carries these tags:
 | `status-<status>` | The rule's Sigma status, for example `status-stable`. |
 | `valhalla-auto-disabled` | Only on rules that **Disable removed** switched off. See [Removed rules](#6-removed-rules). |
 
-If the API key has the optional intelligence permission, the rule is also linked to its MITRE ATT&CK techniques. The rule's sources are added to its description.
+If the API key has the optional intelligence permission, the rule is also linked to its MITRE ATT&CK techniques. If that lookup fails, the rule keeps its existing links and the next sync tries again. The rule's sources are added to its description.
 
 ## 6. Removed rules
 

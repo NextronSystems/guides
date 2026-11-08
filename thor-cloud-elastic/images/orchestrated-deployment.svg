@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="342" viewBox="0 0 900 342" role="img" aria-labelledby="title desc">
+  <title id="title">Orchestrated deployment via Elastic Defend</title>
+  <desc id="desc">Launcher scripts are uploaded to the Script library. A scan starts from the response console, a batch workflow, or an alert workflow. Each sends a runscript response action to Elastic Agent with Elastic Defend on the host, which starts the THOR Cloud Launcher. The launcher uploads the scan report to THOR Cloud.</desc>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1f2933; }
+    .bg { fill: #ffffff; }
+    .zn { fill: #f3f4f6; stroke: #d5d9df; }
+    .zt { fill: #e7f6f2; stroke: #a3dacb; }
+    .zb { fill: #edf3fe; stroke: #b4cbf5; }
+    .n  { fill: #ffffff; stroke: #8a94a3; stroke-width: 1.25; }
+    .nt { fill: #ffffff; stroke: #12806a; stroke-width: 1.25; }
+    .nb { fill: #ffffff; stroke: #3b6fd4; stroke-width: 1.25; }
+    .z  { font-size: 12.5px; font-weight: 600; fill: #52606d; }
+    .t  { font-size: 15px; font-weight: 600; text-anchor: middle; }
+    .s  { font-size: 13px; fill: #52606d; text-anchor: middle; }
+    .l  { font-size: 12px; fill: #52606d; }
+    .e  { fill: none; stroke: #52606d; stroke-width: 1.5; }
+    .a  { marker-end: url(#arrow); }
+    .d  { stroke-dasharray: 5 4; }
+    .ah { fill: #52606d; }
+    .bd { fill: #1f2933; }
+    .bn { font-size: 12px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #e6edf3; }
+      .bg { fill: #0d1117; }
+      .zn { fill: #161b22; stroke: #30363d; }
+      .zt { fill: #0c2925; stroke: #1f6f5e; }
+      .zb { fill: #101d36; stroke: #2c5299; }
+      .n  { fill: #0d1117; stroke: #6e7681; }
+      .nt { fill: #0d1117; stroke: #47c2a8; }
+      .nb { fill: #0d1117; stroke: #6ea0f7; }
+      .z, .s, .l { fill: #a3aeb9; }
+      .e  { stroke: #a3aeb9; }
+      .ah { fill: #a3aeb9; }
+      .bd { fill: #e6edf3; }
+      .bn { fill: #0d1117; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path class="ah" d="M0 0 L10 5 L0 10 z"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="900" height="342" rx="10"/>
+
+  <!-- Zones -->
+  <rect class="zb" x="14"  y="14"  width="480" height="314" rx="8"/>
+  <rect class="zn" x="544" y="110" width="172" height="218" rx="8"/>
+  <rect class="zt" x="766" y="216" width="120" height="112" rx="8"/>
+  <text class="z" x="28"  y="36">Elastic Cloud deployment</text>
+  <text class="z" x="558" y="132">Hosts you scan</text>
+  <text class="z" x="776" y="238">THOR Cloud</text>
+
+  <!-- Edges -->
+  <path class="e" d="M214 80 H246 V178"/>
+  <path class="e" d="M214 276 H246 V178"/>
+  <path class="e a" d="M214 178 H292"/>
+  <path class="e a d" d="M386 106 V144"/>
+  <path class="e a" d="M480 178 H558"/>
+  <path class="e a" d="M630 212 V250"/>
+  <path class="e a" d="M702 283 H776"/>
+
+  <!-- Nodes -->
+  <rect class="nb" x="28" y="46" width="186" height="68" rx="6"/>
+  <text class="t" x="121" y="75">Response console</text>
+  <text class="s" x="121" y="95">one host</text>
+
+  <rect class="nb" x="28" y="144" width="186" height="68" rx="6"/>
+  <text class="t" x="121" y="173">Workflow: batch</text>
+  <text class="s" x="121" y="193">hosts selected by ES|QL</text>
+
+  <rect class="nb" x="28" y="242" width="186" height="68" rx="6"/>
+  <text class="t" x="121" y="264">Workflow: alerts</text>
+  <text class="s" x="121" y="283">new high or critical</text>
+  <text class="s" x="121" y="300">alerts, every 5 minutes</text>
+
+  <rect class="nb" x="292" y="46" width="188" height="60" rx="6"/>
+  <text class="t" x="386" y="71">Script library</text>
+  <text class="s" x="386" y="91">a launcher script per OS</text>
+
+  <rect class="nb" x="292" y="144" width="188" height="68" rx="6"/>
+  <text class="t" x="386" y="173">runscript</text>
+  <text class="s" x="386" y="193">response action</text>
+
+  <rect class="n" x="558" y="144" width="144" height="68" rx="6"/>
+  <text class="t" x="630" y="173">Elastic Agent</text>
+  <text class="s" x="630" y="193">with Elastic Defend</text>
+
+  <rect class="n" x="558" y="250" width="144" height="66" rx="6"/>
+  <text class="t" x="630" y="271">THOR Cloud</text>
+  <text class="t" x="630" y="288">Launcher</text>
+  <text class="s" x="630" y="306">runs the scan</text>
+
+  <rect class="nt" x="776" y="250" width="100" height="66" rx="6"/>
+  <text class="t" x="826" y="279">REST API</text>
+  <text class="s" x="826" y="299">scan reports</text>
+
+  <!-- Edge label -->
+  <text class="l" x="394" y="129">script</text>
+
+  <!-- Step badges -->
+  <circle class="bd" cx="292" cy="46" r="11"/><text class="bn" x="292" y="50.5">1</text>
+  <circle class="bd" cx="269" cy="178" r="11"/><text class="bn" x="269" y="182.5">2</text>
+  <circle class="bd" cx="519" cy="178" r="11"/><text class="bn" x="519" y="182.5">3</text>
+  <circle class="bd" cx="652" cy="231" r="11"/><text class="bn" x="652" y="235.5">4</text>
+  <circle class="bd" cx="741" cy="283" r="11"/><text class="bn" x="741" y="287.5">5</text>
+</svg>

@@ -2,6 +2,10 @@
 
 This guide explains how to deploy the THOR Cloud Launcher on your hosts and bring THOR scan results into Elastic Security on Elastic Cloud.
 
+![Overview: a detection or investigation in Elastic starts a runscript response action through Elastic Defend. The THOR Cloud Launcher downloads THOR from THOR Cloud, runs the scan, and uploads the results. The integration polls the results through the THOR Cloud REST API, the ingest pipeline maps them to ECS, and the findings appear in Kibana.](images/overview.png)
+
+*The orchestrated deployment at a glance. The launcher also runs on Linux and macOS, and you can start it [manually](#manual-deployment) instead.*
+
 > [!NOTE]
 > The Nextron THOR Cloud integration is in technical preview (package version 0.7.0 at the time of writing). Field names can change between versions, so check the [changelog](https://github.com/elastic/integrations/blob/main/packages/nextron_thor/changelog.yml) before you upgrade.
 

@@ -21,7 +21,7 @@ The source folder is named `nextron_thor`, but the package name is `nextron_thor
 ## Setup at a glance
 
 1. Check the [prerequisites](#prerequisites).
-2. [Generate an API key in THOR Cloud](#step-1-prepare-thor-cloud).
+2. [Create an account API key in THOR Cloud](#step-1-prepare-thor-cloud).
 3. [Deploy the integration once](#step-2-deploy-the-nextron-thor-cloud-integration), on one Elastic Agent or as an Elastic Managed Integration.
 4. [Run the launcher on the hosts you scan](#step-3-deploy-the-thor-cloud-launcher), manually or orchestrated via Elastic Defend.
 5. [Verify the results in Kibana](#step-4-verify-the-results-in-kibana). If nothing arrives, go to [Troubleshooting](#troubleshooting).
@@ -50,9 +50,8 @@ The integration collects a scan only if all of these conditions are true. It ski
 
 | Condition | Details |
 |---|---|
-| The scan finished | The scan status is `successful` or `failed`. A running scan is collected once it finishes. |
-| The report isn't encrypted | `logs_encrypted` is `false`. The integration can't read reports encrypted with a public key you provided in THOR Cloud. |
-| The scan has a `thor.json` log | `thor.json` is listed in `available_logs`. It's the only log the integration reads. |
+| The scan finished | The scan status is `successful` or `failed`. A running scan is collected once it finishes. A failed scan, such as one stopped on the host, has a partial report, and the integration collects the events in it. |
+| The report isn't encrypted | `logs_encrypted` is `false`. Scans of a campaign with **Encrypt with my Key** turned on are encrypted with your public key, so only your private key can decrypt them. The integration never collects them. |
 | The scan is in the collection window | Until the integration has collected its first scan, it looks back as far as **Initial Interval**. After that, it continues from the last scan it collected. |
 
 To check these values for your scans, see [Check why a scan is missing](#check-why-a-scan-is-missing).
@@ -71,7 +70,7 @@ To check these values for your scans, see [Check why a scan is missing](#check-w
 
 - A THOR Cloud or THOR Cloud Lite account with API access. THOR Cloud Lite uses a limited signature set and only some of the THOR modules, so expect fewer findings.
 - A campaign. The settings are up to you: Nextron recommends the default, a full scan.
-- No report encryption. THOR Cloud lets you provide a public key to encrypt reports, but the integration skips encrypted reports. Reports are only encrypted if you set this up.
+- **Encrypt with my Key** turned off in the campaign (**Campaigns** → your campaign → **Edit** → **More Options**). It's off unless you uploaded an RSA public key under **Scan Settings → Global Settings → Public Key Upload** and turned it on. The integration skips encrypted scans without an error.
 - Elastic tested the integration with THOR scanner 10.7.x and the THOR JSON log format v2 (`log_version: v2.0.0`).
 
 **Elastic**
@@ -83,7 +82,9 @@ To check these values for your scans, see [Check why a scan is missing](#check-w
   |---|---|
   | Integration, Agent-based | 9.2 |
   | Integration, Elastic Managed Integration | 9.5 (technical preview in earlier versions) |
-  | Orchestrated deployment: Script library, `runscript`, Workflows | 9.4 |
+  | Orchestrated deployment: Script library, `runscript`, Workflows | 9.4 (Workflows: technical preview in 9.3) |
+
+  The workflows in this guide were tested on Elastic Stack 9.5.
 
 - Elastic Agent at the same version as your deployment. The enrollment commands in Kibana install the matching version.
 - The integration works with a Basic subscription. The orchestrated deployment needs a [subscription](https://www.elastic.co/subscriptions/cloud) that includes Elastic Defend response actions and Workflows.
@@ -92,17 +93,19 @@ To check these values for your scans, see [Check why a scan is missing](#check-w
 **Network**
 
 - The hosts you scan, and the Elastic Agent that runs the integration (Agent-based only), can reach `thor-cloud.nextron-services.com` over HTTPS (port 443). For THOR Cloud Lite, the host is `thorcloud-lite.nextron-services.com`. The launcher needs no other hosts.
+- If the hosts you scan need a proxy, the launcher uses the one set in the `HTTPS_PROXY` and `HTTP_PROXY` environment variables. The integration has its own **Proxy URL** setting.
 - Every Elastic Agent can reach your Elastic Cloud deployment over HTTPS (port 443).
 
 **Kibana privileges**
 
-- **Fleet: All** and **Integrations: All**
+- **Management → Fleet: All** and **Management → Integrations: All**
 - **Analytics → Discover: Read** and **Analytics → Dashboard: Read**
 - For the orchestrated deployment, also:
-  - **Elastic Defend Policy Management: All** and **Endpoint List: All**
-  - **Elastic Defend Scripts Management: All**, **Execute Operations: All**, and **Response Actions History: All**
+  - **Security → Security: All**, with **Customize sub-feature privileges** turned on and at least these sub-features: **Elastic Defend Policy Management: All**, **Endpoint List: All**, **Elastic Defend Scripts Management: All**, **Execute Operations: All**, and **Response Actions History: All**. Kibana only offers these sub-features when **Security** is set to **All**.
+  - **Management → Dev Tools: Read**, to look up the script IDs
   - **Analytics → Workflows: All**
   - **Security → Alerts: Read**
+- To [create alerts from findings](#create-alerts-from-findings), also the privileges to [manage detection rules](https://www.elastic.co/docs/solutions/security/detect-and-alert/detections-requirements).
 
 **Elasticsearch index privileges**
 
@@ -111,9 +114,20 @@ To check these values for your scans, see [Check why a scan is missing](#check-w
 
 ## Step 1: Prepare THOR Cloud
 
-1. Log in to the [THOR Cloud dashboard](https://thor-cloud.nextron-services.com/) and go to **General Settings → API Key**.
-2. Select **Generate**, then copy the key and store it securely: you can't view it again later. The API key has the same rights as your THOR Cloud user.
-3. Note your **API Endpoint URL**. The default is `https://thor-cloud.nextron-services.com/api`.
+Create an account API key for the integration. It has its own identity, independent of individual users, and can be set to never expire.
+
+1. Log in to the [THOR Cloud dashboard](https://thor-cloud.nextron-services.com/), or for THOR Cloud Lite the [Lite dashboard](https://thorcloud-lite.nextron-services.com/), and go to **Settings → Account Setup → Account API Keys**.
+2. Create an account API key:
+   - Give it a role that limits it to what the integration needs. The integration only searches scans and downloads their logs.
+   - Leave the expiration date empty, or set one and extend the key before it expires.
+   - Optional: under **IP restrictions**, enter the public IP address of the Agent-based collector in **Allow CIDRs**. Don't restrict an Elastic Managed Integration, which has no fixed IP addresses.
+3. Copy the key and store it securely: you can't view it again later.
+4. Note your **API Endpoint URL**. The default is `https://thor-cloud.nextron-services.com/api`.
+
+If you rotate the key later, update **API Key** in the integration.
+
+> [!NOTE]
+> A user API key (**Settings → Personal → API Keys**) also works, but it has all the permissions of your user account. It must expire within three months and can't be extended or rotated, so you have to create a new key and update the integration at least every three months.
 
 To test the key, run the [API check](#check-why-a-scan-is-missing) from Troubleshooting.
 
@@ -142,7 +156,7 @@ Deploy the integration once: a single copy collects the scan reports of all host
    |---|---|
    | **Initial Interval** | `24h`: how far back the integration looks until it has collected its first scan. Use `h`, `m`, or `s` as the unit: for 30 days, enter `720h`. |
    | **API url** | The API Endpoint URL from THOR Cloud. Pre-filled with `https://thor-cloud.nextron-services.com/api`. For THOR Cloud Lite, use `https://thorcloud-lite.nextron-services.com/api`. |
-   | **API Key** | The API key you generated in THOR Cloud |
+   | **API Key** | The API key you created in THOR Cloud |
    | **Interval** | `5m`: how often the integration polls THOR Cloud |
 
    If you need them, the advanced options include **Proxy URL**, **SSL Configuration**, and **HTTP Client Timeout** (default `30s`).
@@ -207,6 +221,8 @@ If Elastic Defend already runs on these hosts, continue with [Upload the launche
 
 The hosts appear on the **Endpoints** page. If you also want to scan the host whose Elastic Agent runs the integration, add Elastic Defend to that agent's policy as well.
 
+THOR needs no exception in Elastic Defend. In Nextron's tests on Windows, with malware, ransomware, memory threat, and malicious behavior protection all set to **Prevent**, a 59-minute scan ran to completion, and Elastic Defend raised no alerts.
+
 #### Upload the launcher scripts
 
 1. Find **Script library** in the navigation menu or use the global search field.
@@ -215,9 +231,7 @@ The hosts appear on the **Endpoints** page. If you also want to scan the host wh
    - **File type**: **Script file**
    - **Name**: for example `THOR-Windows`, `THOR-Linux`, or `THOR-macOS`
    - **Operating systems**: the operating system of the script
-3. Select **Upload**. Repeat for each operating system you scan.
-
-The Script library rejects a file with the same SHA-256 hash as an existing script. If two of your launcher scripts are identical, upload the file once, select both operating systems, and use its script ID for both in the workflows.
+3. Select **Upload**. Repeat for each operating system you scan. Upload the Linux and macOS scripts separately: they look alike, but each downloads the launcher for its own operating system.
 
 The response console starts a script by its **Name**. The workflows use the script ID instead: [Scan a batch of hosts](#scan-a-batch-of-hosts) shows how to look it up.
 
@@ -234,7 +248,7 @@ Use any of the three ways; they can be combined. Scans count towards any scan li
    runscript --script="THOR-Windows"
    ```
 
-   The output confirms that the THOR Cloud Launcher started. The host waits up to four hours for the script to complete. To change this, add `--timeout`, for example `--timeout=8h`.
+   The script starts the THOR Cloud Launcher in the background, shows its output for up to 100 seconds, and ends. The action then reports success, while the scan keeps running on the host as its own process. The `runscript` timeout doesn't limit the scan.
 
 ##### Scan a batch of hosts
 
@@ -265,25 +279,24 @@ description: Run the THOR Cloud launcher from the Script Library on Elastic Defe
 settings:
   timeout: "2h"
 
-inputs:
-  - name: esql_query
-    type: string
-    description: ES|QL returning agent.id and script_id (Script Library ID per OS), in that order.
-    required: true
-    default: |
-      FROM metrics-endpoint.metadata_current_*
-      | WHERE Endpoint.status == "enrolled"
-      | EVAL script_id = CASE(
-          host.os.name == "Windows", "<WINDOWS_SCRIPT_ID>",
-          host.os.name == "Linux",   "<LINUX_SCRIPT_ID>",
-          host.os.name == "macOS",   "<MACOS_SCRIPT_ID>",
-          null)
-      | WHERE script_id IS NOT NULL
-      | KEEP agent.id, script_id
-      | LIMIT 2000
-
 triggers:
   - type: manual
+    inputs:
+      - name: esql_query
+        type: string
+        description: ES|QL returning agent.id and script_id (Script Library ID per OS), in that order.
+        required: true
+        default: |
+          FROM metrics-endpoint.metadata_current_*
+          | WHERE Endpoint.status == "enrolled"
+          | EVAL script_id = CASE(
+              host.os.name == "Windows", "<WINDOWS_SCRIPT_ID>",
+              host.os.name == "Linux",   "<LINUX_SCRIPT_ID>",
+              host.os.name == "macOS",   "<MACOS_SCRIPT_ID>",
+              null)
+          | WHERE script_id IS NOT NULL
+          | KEEP agent.id, script_id
+          | LIMIT 2000
 
 steps:
   # Columns consumed via foreach.item[N]: [0] agent.id  [1] script_id
@@ -329,9 +342,10 @@ Every 5 minutes, the workflow finds new open high or critical alerts. It then st
 
 Before you enable it, consider how it behaves:
 
+- The workflow can only scan a host if the alert has the host's Elastic Agent ID in `agent.id`, and its `host.os.type`. Alerts from Elastic Defend, and detection rule alerts on Elastic Defend events, have both.
+- Alerts created from THOR events don't start a scan. Their `agent.id` is the collector's, not the scanned host's, and they have no `host.os.type`. So a finding of one THOR scan can't start a deeper scan of the same host.
 - The cooldown counts every `runscript` action on the host, not only THOR scans. Any other script run on the host delays the next scan.
-- If a THOR scan itself raises a high or critical alert on the host, the workflow starts a new scan each time the cooldown ends. If you see this, add an exception in Elastic Security.
-- Alerts created from THOR events don't start a scan, because THOR events have no `host.os.type` value.
+- If a THOR scan raises a high or critical alert in your environment, the workflow scans the host again each time the cooldown ends. Nextron's tests showed no such alerts.
 
 <details>
 <summary>Workflow YAML: scan hosts with new alerts</summary>
@@ -414,7 +428,7 @@ steps:
 
 #### Follow the scans
 
-- **Response actions history** (find it in the navigation menu or use the global search field): the status of each `runscript` action.
+- **Response actions history** (find it in the navigation menu or use the global search field): the status of each `runscript` action. A successful action means that the launcher started, not that the scan finished.
 - The workflow's **Executions** tab: each workflow run.
 - The THOR Cloud campaign view: the progress of each scan.
 
@@ -461,13 +475,14 @@ Work through these checks in order:
    data_stream.dataset : "nextron_thor_apt_scanner.thor_forwarding" and error.message : *
    ```
 
-   The integration reports API errors as events. `error.message` names the failed request, and `error.code` holds the HTTP status.
+   The integration reports API errors as events, one at every poll. `error.message` names the failed request and holds THOR Cloud's response, and `error.code` holds the HTTP status.
 2. **Check the collector.** For **Agent-based**, the agent must be **Healthy** in **Fleet → Agents**. For **Elastic Managed Integration**, check the status on the integration's **Integration policies** tab, and hover over it to see the reason.
 3. **Check the scan.** See [Check why a scan is missing](#check-why-a-scan-is-missing).
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| `error.code` is `401`, or the message says `unauthenticated request` | The API key is wrong or no longer valid, or its IP restrictions exclude the collector | Generate a new key in THOR Cloud and update the integration, or change the key's IP restrictions |
+| `error.code` is `401`, and the message says `unauthenticated request (invalid API key)` | The API key is wrong, expired, or deleted | Create a new key, or extend or rotate the account API key, and update **API Key** in the integration |
+| `error.code` is `403`, and the message says `API key not permitted from this IP address` | The key's IP restrictions exclude the collector | In THOR Cloud, select the key's pencil icon (**Edit IP Restrictions**) and allow the collector's public IP address. For an Elastic Managed Integration, remove the restrictions. |
 | Requests time out or can't connect (Agent-based) | The agent's host can't reach THOR Cloud | Allow the [network access](#prerequisites), or set **Proxy URL** in the advanced options |
 | Timeouts on `/v1/scan/log` | A large report takes longer than **HTTP Client Timeout** to download | Increase **HTTP Client Timeout** in the advanced options |
 | No errors, and a scan is missing | The scan doesn't meet the [conditions](#which-scans-reach-elastic) | Run the [API check](#check-why-a-scan-is-missing) |
@@ -475,7 +490,7 @@ Work through these checks in order:
 
 ### Check why a scan is missing
 
-Run this check from a Linux or macOS host that can reach THOR Cloud. It calls the same API endpoint as the integration, so it also tests your API key and the network path. It requires `curl` and `jq`. For THOR Cloud Lite, change the host name.
+Run this check from a Linux or macOS host that can reach THOR Cloud, and that the key's IP restrictions allow. It calls the same API endpoint as the integration, so it also tests your API key and the network path. It requires `curl` and `jq`. For THOR Cloud Lite, change the host name.
 
 ```bash
 read -rs THOR_CLOUD_API_KEY
@@ -487,7 +502,7 @@ curl -sS -G "https://thor-cloud.nextron-services.com/api/v1/scan/search" \
   | jq '.message // (.data[] | {id, status, logs_encrypted, available_logs, last_launcher_update})'
 ```
 
-Paste the API key after the first command and press Enter. The output lists your 10 most recent scans. Compare each with the [conditions](#which-scans-reach-elastic). `last_launcher_update` is in Unix time.
+Paste the API key after the first command and press Enter. The output lists your 10 most recent scans, newest first. Compare each with the [conditions](#which-scans-reach-elastic). `last_launcher_update` is in Unix time. If the output is an error message instead, compare it with the [symptoms](#no-events-appear-in-kibana).
 
 ### Collect older scans
 
@@ -498,8 +513,9 @@ Paste the API key after the first command and press Enter. The output lists your
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | **Script library** or **Workflows** isn't in the navigation menu | The version, subscription, or privileges don't allow it | Check the [prerequisites](#prerequisites). For **Workflows**, also check that `workflows:ui:enabled` is turned on in **Advanced Settings**. |
-| The script upload is rejected | A script with the same SHA-256 hash already exists | Add the operating system to the existing script |
+| The script upload is rejected | A script with the same SHA-256 hash already exists | Use the existing script, or delete it before you upload the file again |
 | `runscript` doesn't offer your script | The script's **Operating systems** doesn't include the host's | Edit the script in the **Script library** |
 | A workflow run does nothing | The query returned no rows | On the **Executions** tab, open the `get_target_endpoints` or `get_alerting_endpoints` step and check its output |
 | `runscript` actions fail in a workflow | A script ID is wrong or still has a placeholder | Check the script IDs in the `CASE` lines |
+| The batch workflow fails with `[query] is required` | `inputs` is at the top level of the YAML, so the query isn't passed to the step | Put `inputs` under the `manual` trigger, as in the [YAML above](#scan-a-batch-of-hosts) |
 | A workflow's query fails with a privileges error | The user lacks [index privileges](#prerequisites) | Grant them. For a scheduled workflow, the user who last saved it needs them, and must save it again to refresh its access. |

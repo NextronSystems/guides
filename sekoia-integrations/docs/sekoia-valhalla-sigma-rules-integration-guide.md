@@ -24,13 +24,21 @@ You need two API keys.
 ## 2. Set it up
 
 1. In Sekoia, open **Configure → Integrations**, search for **Valhalla** and install **Nextron Valhalla Sigma Rules**.
+
+   ![The Nextron Valhalla integration page in Sekoia, with the Show accounts button, a description of the integration, and the playbook trigger Sync Valhalla Sigma rules into Sekoia Rules Catalog.](../images/valhalla-integration-page.png)
+
 2. Open **Configure → Playbooks**, click **+ New playbook**, choose your community and **Create a playbook from scratch**. Give it a name, for example *Sync Valhalla Sigma rules*.
-3. As the trigger, select **Sync Valhalla Sigma rules into Sekoia Rules Catalog**.
+3. As the trigger, select **Sync Valhalla Sigma rules into Sekoia Rules Catalog**. To find it, open **Triggers** in the playbook's **Workflow** tab and search for *nextron*.
+
+   ![The Workflow tab of a new playbook. The Triggers panel is searched for nextron and lists the Nextron Valhalla integration with the trigger Sync Valhalla Sigma rules into Sekoia Rules Catalog.](../images/valhalla-playbook-trigger.png)
+
 4. Create an **account** for the trigger (see [Trigger account](#3-trigger-account)).
 5. Create a **configuration** for the trigger (see [Trigger configuration](#4-trigger-configuration)). The defaults are a good start.
 6. Save the playbook and turn it on. The first sync starts right away.
 
 When the sync has finished, open **Configure → Rules Catalog** and filter by the tag `nextron-valhalla` to see the imported rules.
+
+![The Sekoia Rules Catalog after a sync. Imported rules such as Webshell Detection With Command Line Keywords and Mimikatz Use come from Nextron Systems LLC and carry the tags nextron-valhalla, status-test and their Valhalla uuid tag, plus their MITRE ATT&CK tags.](../images/valhalla-rules-catalog.png)
 
 ## 3. Trigger account
 
@@ -48,6 +56,8 @@ Both API keys are hidden once you save the account.
 ## 4. Trigger configuration
 
 The trigger configuration controls which rules are imported and how.
+
+![The Configuration tab of the Sync Valhalla Sigma rules into Sekoia Rules Catalog trigger, with the fields Name, enabled, Frequency, disable_removed, min_sigma_level, min_sigma_status and Preserve Rule Names.](../images/valhalla-trigger-configuration.png)
 
 | Setting | Default | What it does |
 |---|---|---|

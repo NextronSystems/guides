@@ -44,6 +44,8 @@ When the sync has finished, open **Configure → Rules Catalog** and filter by t
 
 The account holds the connection details.
 
+![The Add new account dialog of the Nextron Valhalla integration, with the fields Community Uuid, Sekoia Api Key, Sekoia Base Url (default https://api.sekoia.io) and Valhalla Api Key (prefilled with the demo key).](../images/valhalla-trigger-account.png)
+
 | Setting | What to enter |
 |---|---|
 | **Community UUID** | Leave empty unless your API key can access several communities (common for MSSPs). Then enter the community the rules should go to. To find the UUID: open the community in Sekoia, go to **Settings → General** and copy the part of the URL between `/communities/` and `/community-details`. |

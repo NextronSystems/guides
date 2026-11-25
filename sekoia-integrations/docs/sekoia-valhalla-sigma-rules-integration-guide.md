@@ -4,6 +4,10 @@ The Nextron Valhalla Sigma Rules integration copies the Sigma rules from Nextron
 
 The integration is for customers of both Sekoia and Nextron Valhalla. The one exception is the free Valhalla community feed: it only needs a Sekoia account.
 
+![Overview: Sigma rules come in from Nextron, events from your own sources, and Sekoia checks every event against the rules you enable. 1: Contact Nextron for a Valhalla API key to more than 1,100 private Sigma rules; without a key, the demo key gives you the community feed. 2: Add the key to the Valhalla integration in Sekoia, which pulls the rules every day and keeps your own rule settings. 3: The rules land in your Rules Catalog. 4: They arrive disabled, and you enable the ones that fit your data. Meanwhile, Sekoia intakes collect and normalize the events from your log sources. 5: Enabled rules check every event. 6: A match raises an alert in Sekoia that you investigate in your usual SOC workflow.](../images/valhalla-overview.png)
+
+*The integration at a glance. The daily sync, the minimum Sigma level and disabled new rules are defaults; you can change them in the [trigger configuration](#4-trigger-configuration).*
+
 ## 1. Before you start
 
 You need two API keys.

@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1125" viewBox="0 0 2000 1125">
+<title>Where Nextron Sigma rules meet your events</title>
+<rect x="0" y="0" width="2000" height="1125" fill="#07090A"/>
+<rect x="80" y="70" width="70" height="7" fill="#F2377B"/>
+<text x="80" y="150" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="60" fill="#F0F1F3" font-weight="700">Where Nextron Sigma rules meet your events</text>
+<text x="80" y="200" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="29" fill="#9A9EA6">Sigma rules come in from Nextron, events from your own sources. Sekoia checks every event against the rules you enable.</text>
+<rect x="530" y="268" width="1390" height="648" fill="#0C0F12" stroke="#1E242B" stroke-width="2"/>
+<text x="530" y="250" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#9A9EA6" letter-spacing="2.5">SEKOIA SOC PLATFORM</text>
+<text x="80" y="340" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#30CFCE" letter-spacing="2.5">01 · CONTACT NEXTRON</text>
+<text x="80" y="388" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="36" fill="#F0F1F3" font-weight="700">Nextron Valhalla</text>
+<text x="80" y="428" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#E2E4E8">1,100+ private Sigma rules</text>
+<text x="80" y="460" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#E2E4E8">from our threat research</text>
+<text x="80" y="520" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="21" fill="#8C929B">No key yet? The demo key</text>
+<text x="80" y="548" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="21" fill="#8C929B">gives you the community feed.</text>
+<line x1="400" y1="440" x2="590" y2="440" stroke="#1A6C6C" stroke-width="2.5"/>
+<path d="M584.6 431 L599 440 L584.6 449 Z" fill="#1A6C6C"/>
+<rect x="466.0" y="422.0" width="128" height="36" fill="#07090A" stroke="#28B2AF" stroke-width="2"/>
+<text x="530" y="446.5" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="18" fill="#30CFCE" text-anchor="middle" letter-spacing="2.5">API KEY</text>
+<text x="600" y="340" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#30CFCE" letter-spacing="2.5">02 · ADD THE KEY</text>
+<rect x="600" y="360" width="360" height="160" fill="#11161B" stroke="#1A6C6C" stroke-width="2"/>
+<text x="626" y="408" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="30" fill="#F0F1F3" font-weight="700">Valhalla integration</text>
+<text x="626" y="446" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">Pulls the rules with your</text>
+<text x="626" y="474" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">key, every day. Keeps your</text>
+<text x="626" y="502" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">own rule settings.</text>
+<line x1="960" y1="440" x2="1062" y2="440" stroke="#1A6C6C" stroke-width="2.5"/>
+<path d="M1055.6 431 L1070 440 L1055.6 449 Z" fill="#1A6C6C"/>
+<rect x="978" y="432" width="16" height="16" fill="#1A6C6C"/>
+<rect x="1004" y="432" width="16" height="16" fill="#1A6C6C"/>
+<rect x="1030" y="432" width="16" height="16" fill="#1A6C6C"/>
+<text x="1080" y="340" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#30CFCE" letter-spacing="2.5">03 · RULES CATALOG</text>
+<rect x="1080" y="360" width="40" height="40" fill="#28B2AF"/>
+<rect x="1130" y="360" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1180" y="360" width="40" height="40" fill="#28B2AF"/>
+<rect x="1230" y="360" width="40" height="40" fill="#28B2AF"/>
+<rect x="1280" y="360" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1330" y="360" width="40" height="40" fill="#28B2AF"/>
+<rect x="1380" y="360" width="40" height="40" fill="#28B2AF"/>
+<rect x="1430" y="360" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1080" y="410" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1130" y="410" width="40" height="40" fill="#28B2AF"/>
+<rect x="1180" y="410" width="40" height="40" fill="#28B2AF"/>
+<rect x="1230" y="410" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1280" y="410" width="40" height="40" fill="#28B2AF"/>
+<rect x="1330" y="410" width="40" height="40" fill="#28B2AF"/>
+<rect x="1380" y="410" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1430" y="410" width="40" height="40" fill="#28B2AF"/>
+<rect x="1080" y="460" width="40" height="40" fill="#28B2AF"/>
+<rect x="1130" y="460" width="40" height="40" fill="#28B2AF"/>
+<rect x="1180" y="460" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1230" y="460" width="40" height="40" fill="#28B2AF"/>
+<rect x="1280" y="460" width="40" height="40" fill="#28B2AF"/>
+<rect x="1330" y="460" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1380" y="460" width="40" height="40" fill="#28B2AF"/>
+<rect x="1430" y="460" width="40" height="40" fill="#28B2AF"/>
+<rect x="1080" y="510" width="40" height="40" fill="#28B2AF"/>
+<rect x="1130" y="510" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1180" y="510" width="40" height="40" fill="#28B2AF"/>
+<rect x="1230" y="510" width="40" height="40" fill="#28B2AF"/>
+<rect x="1280" y="510" width="40" height="40" fill="#1A6C6C"/>
+<rect x="1330" y="510" width="40" height="40" fill="#F2377B"/>
+<rect x="1380" y="510" width="40" height="40" fill="#28B2AF"/>
+<rect x="1430" y="510" width="40" height="40" fill="#1A6C6C"/>
+<text x="1580" y="340" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#30CFCE" letter-spacing="2.5">04 · ENABLE</text>
+<text x="1580" y="388" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="30" fill="#F0F1F3" font-weight="700">You decide</text>
+<text x="1580" y="426" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">Rules arrive disabled.</text>
+<text x="1580" y="456" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">Switch on the ones that</text>
+<text x="1580" y="486" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">fit your data.</text>
+<rect x="1580" y="516" width="20" height="20" fill="#28B2AF"/>
+<text x="1612" y="533" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#9A9EA6">enabled</text>
+<rect x="1710" y="516" width="20" height="20" fill="#1A6C6C"/>
+<text x="1742" y="533" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#9A9EA6">not enabled</text>
+<text x="80" y="700" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#8C929B" letter-spacing="2.5">ALREADY IN PLACE</text>
+<text x="80" y="748" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="36" fill="#F0F1F3" font-weight="700">Your log sources</text>
+<text x="80" y="788" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#E2E4E8">Endpoints, servers,</text>
+<text x="80" y="820" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#E2E4E8">network, cloud</text>
+<rect x="338" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="352" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="366" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="380" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="394" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="408" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="422" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="436" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="450" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="464" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="478" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="492" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="506" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="520" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="534" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="548" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="562" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="576" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="590" y="788" width="4" height="24" fill="#3A414A"/>
+<text x="600" y="700" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#8C929B" letter-spacing="2.5">SEKOIA INTAKES</text>
+<rect x="600" y="720" width="360" height="160" fill="#11161B" stroke="#2C3239" stroke-width="2"/>
+<text x="626" y="768" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="30" fill="#F0F1F3" font-weight="700">Collect &amp; normalize</text>
+<text x="626" y="806" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">Your events, in one format,</text>
+<text x="626" y="834" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">ready to be checked.</text>
+<rect x="970.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="984.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="998.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1012.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1026.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1040.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1054.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1068.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1082.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1096.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1110.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1124.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1138.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1152.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1166.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1180.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1194.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1208.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1222.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1236.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1250.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1264.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1278.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1292.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1306.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1320.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1334.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1348.0" y="788" width="4" height="24" fill="#F2377B"/>
+<rect x="1362.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1376.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1390.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1404.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1418.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1432.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1446.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1460.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1474.0" y="788" width="4" height="24" fill="#3A414A"/>
+<rect x="1488.0" y="788" width="4" height="24" fill="#3A414A" opacity="0.9272727272727272"/>
+<rect x="1502.0" y="788" width="4" height="24" fill="#3A414A" opacity="0.8"/>
+<rect x="1516.0" y="788" width="4" height="24" fill="#3A414A" opacity="0.6727272727272727"/>
+<rect x="1530.0" y="788" width="4" height="24" fill="#3A414A" opacity="0.5454545454545454"/>
+<line x1="1100.0" y1="550" x2="1100.0" y2="784" stroke="#28B2AF" stroke-width="1.5" opacity="0.45"/>
+<line x1="1150.0" y1="550" x2="1150.0" y2="784" stroke="#28B2AF" stroke-width="1.5" opacity="0.45"/>
+<line x1="1200.0" y1="550" x2="1200.0" y2="784" stroke="#28B2AF" stroke-width="1.5" opacity="0.45"/>
+<line x1="1250.0" y1="550" x2="1250.0" y2="784" stroke="#28B2AF" stroke-width="1.5" opacity="0.45"/>
+<line x1="1300.0" y1="550" x2="1300.0" y2="784" stroke="#28B2AF" stroke-width="1.5" opacity="0.45"/>
+<line x1="1350.0" y1="550" x2="1350.0" y2="784" stroke="#F2377B" stroke-width="3"/>
+<line x1="1400.0" y1="550" x2="1400.0" y2="784" stroke="#28B2AF" stroke-width="1.5" opacity="0.45"/>
+<line x1="1450.0" y1="550" x2="1450.0" y2="784" stroke="#28B2AF" stroke-width="1.5" opacity="0.45"/>
+<rect x="1070" y="616" width="410" height="76" fill="#0C0F12"/>
+<text x="1275" y="646" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#30CFCE" text-anchor="middle" letter-spacing="2.5">05 · DETECT</text>
+<text x="1275" y="678" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8" text-anchor="middle">Enabled rules check every event</text>
+<text x="1580" y="700" font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="20" fill="#F2377B" letter-spacing="2.5">06 · ALERT</text>
+<rect x="1580" y="720" width="310" height="160" fill="#1A0913"/>
+<rect x="1580" y="720" width="6" height="160" fill="#F2377B"/>
+<text x="1610" y="768" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="30" fill="#F0F1F3" font-weight="700">Alert in Sekoia</text>
+<text x="1610" y="806" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">Investigate it in your</text>
+<text x="1610" y="834" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#E2E4E8">usual SOC workflow.</text>
+<path d="M1350.0 812 L1350.0 852 L1566 852" fill="none" stroke="#F2377B" stroke-width="3"/>
+<path d="M1563.6 843 L1578 852 L1563.6 861 Z" fill="#F2377B"/>
+<text x="80" y="1016" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="34" fill="#F0F1F3" font-weight="700">Nextron research, running on the events your SOC already collects.</text>
+<text x="80" y="1058" font-family="'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#8C929B">Defaults: daily sync, minimum Sigma level medium, new rules imported disabled. All configurable.</text>
+</svg>

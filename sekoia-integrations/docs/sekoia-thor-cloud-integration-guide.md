@@ -34,17 +34,17 @@ Use an **account API key**. It's a machine identity of your THOR Cloud account: 
    | **Deny CIDRs** | Leave it empty. |
    | **Roles** | Leave it empty. Give the key only the permissions below. |
 
-   ![Creating an account API key in THOR Cloud](images/sekoia-thor-cloud-integration/01-thor-cloud-create-account-api-key.png)
+   ![Creating an account API key in THOR Cloud](../images/sekoia-thor-cloud-integration/01-thor-cloud-create-account-api-key.png)
 
 4. Leave **Administrator** unchecked. Collecting scans only needs two permissions, and nothing under **Administrative**: **List Scans** to find the scans, and **Read Logs** to download their logs. If you also want to use the [launcher action](#8-generating-a-thor-cloud-launcher-optional), see the permissions listed there. Choose where to grant them:
 
    - **All campaigns:** under **Access to all campaigns**, check **List Scans** and **Read Logs**. Sekoia then collects scans from every campaign, including campaigns created later.
 
-     ![Account API key with access to all campaigns](images/sekoia-thor-cloud-integration/02-thor-cloud-api-key-all-campaigns.png)
+     ![Account API key with access to all campaigns](../images/sekoia-thor-cloud-integration/02-thor-cloud-api-key-all-campaigns.png)
 
    - **Specific campaigns:** leave **Access to all campaigns** unchecked. Under **Per-campaign Permissions**, select the campaign in **Add a campaign…**, click **+ Add Campaign** and check **List Scans** and **Read Logs** in its row. Repeat for every campaign Sekoia should collect, and enter the same campaign UUIDs in the connector's **Campaigns** setting (see [Connector configuration](#3-connector-configuration)). Campaigns created later aren't included until you add them to the key.
 
-     ![Account API key with access to a single campaign](images/sekoia-thor-cloud-integration/03-thor-cloud-api-key-single-campaign.png)
+     ![Account API key with access to a single campaign](../images/sekoia-thor-cloud-integration/03-thor-cloud-api-key-single-campaign.png)
 
    Don't check **All permissions** for a campaign: it also grants **Edit Campaign** and **Delete Scans**, which the integration doesn't need.
 
@@ -60,15 +60,15 @@ Setup has two parts: an **account** that holds your THOR Cloud API key, and an *
 
 1. In Sekoia, open **Configure → Integrations** and search for **THOR Cloud**.
 
-   ![Searching for the THOR Cloud integration in Sekoia](images/sekoia-thor-cloud-integration/04-sekoia-search-integration.png)
+   ![Searching for the THOR Cloud integration in Sekoia](../images/sekoia-thor-cloud-integration/04-sekoia-search-integration.png)
 
 2. Open the **THOR Cloud** integration and click **Connect an account to start**. If the integration already has an account, click **Show accounts**, then **+ Connect an account**.
 
-   ![THOR Cloud integration page in Sekoia](images/sekoia-thor-cloud-integration/05-sekoia-integration-page.png)
+   ![THOR Cloud integration page in Sekoia](../images/sekoia-thor-cloud-integration/05-sekoia-integration-page.png)
 
 3. Give the account a name, for example *THOR Cloud*, and paste your THOR Cloud API key into **Api Key**. Click **Save**.
 
-   ![Account configuration with the THOR Cloud API key](images/sekoia-thor-cloud-integration/06-sekoia-connect-account.png)
+   ![Account configuration with the THOR Cloud API key](../images/sekoia-thor-cloud-integration/06-sekoia-connect-account.png)
 
 Sekoia checks the key when you save the account: it's accepted if THOR Cloud or THOR Cloud Lite accepts it. The API key is hidden once you save the account. One account can be used by several intakes and playbooks.
 
@@ -77,11 +77,11 @@ Sekoia checks the key when you save the account: it's accepted if THOR Cloud or 
 1. On the THOR Cloud integration page, under **Events collection**, click **Create intake** next to **Nextron THOR v2**.
 2. In **Configure your intake**, give the intake a name, for example *THOR Cloud*, choose the **Community** and the **Entity** the events belong to, and click **Next**.
 
-   ![Creating the intake](images/sekoia-thor-cloud-integration/07-sekoia-create-intake.png)
+   ![Creating the intake](../images/sekoia-thor-cloud-integration/07-sekoia-create-intake.png)
 
 3. In the connector configuration, select the account from step 2.1 and set the options (see [Connector configuration](#3-connector-configuration)). Make sure **Product** matches your service: the default is `thor_cloud_lite`.
 
-   ![Connector configuration of the intake](images/sekoia-thor-cloud-integration/08-sekoia-connector-configuration.png)
+   ![Connector configuration of the intake](../images/sekoia-thor-cloud-integration/08-sekoia-connector-configuration.png)
 
 4. Click **Save** and make sure the intake is switched **On**.
 
@@ -129,7 +129,7 @@ If THOR Cloud can't be reached, the connector logs the error and retries a minut
 
 Open the intake in **Configure → Intakes**.
 
-![Events received by the THOR Cloud intake](images/sekoia-thor-cloud-integration/09-sekoia-intake-events.png)
+![Events received by the THOR Cloud intake](../images/sekoia-thor-cloud-integration/09-sekoia-intake-events.png)
 
 - The **Events** tab shows how many events arrived and whether they were parsed. All events should be **valid**. Click an event to see the parsed fields and the raw THOR log line.
 - **Event delivery** is the delay between the event time and its arrival in Sekoia. The event time is the moment THOR wrote the log line on the endpoint, and logs are only collected after the scan finishes. A delivery time of tens of minutes, or longer for a backfill, is therefore expected.
@@ -143,11 +143,11 @@ Open the intake in **Configure → Intakes**.
   | `Scan <id> has encrypted logs, …` | The scan's logs are encrypted and can't be forwarded. |
   | `Only X of N events of scan <id> were accepted …` | Delivery to the intake failed. The scan is sent again on the next poll. |
 
-  ![Connector logs of the THOR Cloud intake](images/sekoia-thor-cloud-integration/10-sekoia-intake-connector-logs.png)
+  ![Connector logs of the THOR Cloud intake](../images/sekoia-thor-cloud-integration/10-sekoia-intake-connector-logs.png)
 
 To see the events, open **Investigate → Events** and search for the intake, or filter on `observer.product:THOR`.
 
-![THOR events in the Sekoia Events page](images/sekoia-thor-cloud-integration/11-sekoia-events-page.png)
+![THOR events in the Sekoia Events page](../images/sekoia-thor-cloud-integration/11-sekoia-events-page.png)
 
 ## 6. The normalized events
 
@@ -207,7 +207,7 @@ Fields that have no equivalent in the taxonomy are kept under `nextron.thor.*`, 
 
   It matches the `Warning` and `Alert` lines, and also `Error` lines, which have the same severity as warnings. Use **Test pattern** to see which of your events the pattern matches before you save it. For `Alert` lines only, replace `event.severity|gte: 3` with `event.kind: alert`.
 
-  ![Testing the Sigma pattern in the Rules Catalog](images/sekoia-thor-cloud-integration/12-sekoia-rule-test-pattern.png)
+  ![Testing the Sigma pattern in the Rules Catalog](../images/sekoia-thor-cloud-integration/12-sekoia-rule-test-pattern.png)
 - **Start with Alert and Warning lines.** They are the findings. The `Info` and `Notice` lines describe the scan itself and are useful context during an investigation.
 - **Group by scan.** Filter on `nextron.thor.scan_id` to see everything one scan reported, including what was scanned and how the scan ended.
 - **Pivot on the observables.** File hashes, IP addresses, domains and user names are mapped to the standard taxonomy fields, so you can search for them across your other Sekoia sources.
@@ -230,13 +230,13 @@ To add the action to a playbook:
 1. In the playbook editor, open **Actions**, search for `THOR Cloud` and drag **Generate THOR Cloud launcher** into the workflow.
 2. On the **Account** tab, select the THOR Cloud account you connected in [Install the integration and connect your account](#21-install-the-integration-and-connect-your-account), and leave **Cloud** selected.
 
-   ![Selecting the account of the launcher action](images/sekoia-thor-cloud-integration/13-sekoia-playbook-launcher-account.png)
+   ![Selecting the account of the launcher action](../images/sekoia-thor-cloud-integration/13-sekoia-playbook-launcher-account.png)
 
 3. On the **Configuration** tab, fill in the settings described below. The form lists them in no particular order; use the search field to find one.
 
-   ![Configuration of the launcher action](images/sekoia-thor-cloud-integration/14-sekoia-playbook-launcher-configuration.png)
+   ![Configuration of the launcher action](../images/sekoia-thor-cloud-integration/14-sekoia-playbook-launcher-configuration.png)
 
-   ![More settings of the launcher action](images/sekoia-thor-cloud-integration/15-sekoia-playbook-launcher-configuration-continued.png)
+   ![More settings of the launcher action](../images/sekoia-thor-cloud-integration/15-sekoia-playbook-launcher-configuration-continued.png)
 
 Fill in either **Campaign Id** to use an existing campaign, or **Campaign Name** to create a new one, not both. The other campaign settings only apply to new campaigns.
 

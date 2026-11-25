@@ -4,7 +4,7 @@ The Nextron Valhalla Sigma Rules integration copies the Sigma rules from Nextron
 
 The integration is for customers of both Sekoia and Nextron Valhalla. The one exception is the free Valhalla community feed: it only needs a Sekoia account.
 
-![Overview: Sigma rules come in from Nextron, events from your own sources, and Sekoia checks every event against the rules you enable. 1: Contact Nextron for a Valhalla API key to more than 1,100 private Sigma rules; without a key, the demo key gives you the community feed. 2: Add the key to the Valhalla integration in Sekoia, which pulls the rules every day and keeps your own rule settings. 3: The rules land in your Rules Catalog. 4: They arrive disabled, and you enable the ones that fit your data. Meanwhile, Sekoia intakes collect and normalize the events from your log sources. 5: Enabled rules check every event. 6: A match raises an alert in Sekoia that you investigate in your usual SOC workflow.](../images/valhalla-overview.png)
+![Overview: Sigma rules come in from Nextron, events from your own sources, and Sekoia checks every event against the rules you enable. 1: Contact Nextron for a Valhalla API key to more than 1,100 private Sigma rules; without a key, the demo key gives you the community feed. 2: Add the key to the Valhalla integration in Sekoia, which pulls the rules every day and keeps your own rule settings. 3: The rules land in your Rules Catalog. 4: They arrive disabled, and you enable the ones that fit your data. Meanwhile, Sekoia intakes collect and normalize the events from your log sources. 5: Enabled rules check every event. 6: A match raises an alert in Sekoia that you investigate in your usual SOC workflow.](../images/sekoia-valhalla-sigma-rules-integration/valhalla-overview.png)
 
 *The integration at a glance. The daily sync, the minimum Sigma level and disabled new rules are defaults; you can change them in the [trigger configuration](#4-trigger-configuration).*
 
@@ -29,12 +29,12 @@ You need two API keys.
 
 1. In Sekoia, open **Configure → Integrations**, search for **Valhalla** and install **Nextron Valhalla Sigma Rules**.
 
-   ![The Nextron Valhalla integration page in Sekoia, with the Show accounts button, a description of the integration, and the playbook trigger Sync Valhalla Sigma rules into Sekoia Rules Catalog.](../images/valhalla-integration-page.png)
+   ![The Nextron Valhalla integration page in Sekoia, with the Show accounts button, a description of the integration, and the playbook trigger Sync Valhalla Sigma rules into Sekoia Rules Catalog.](../images/sekoia-valhalla-sigma-rules-integration/valhalla-integration-page.png)
 
 2. Open **Configure → Playbooks**, click **+ New playbook**, choose your community and **Create a playbook from scratch**. Give it a name, for example *Sync Valhalla Sigma rules*.
 3. As the trigger, select **Sync Valhalla Sigma rules into Sekoia Rules Catalog**. To find it, open **Triggers** in the playbook's **Workflow** tab and search for *nextron*.
 
-   ![The Workflow tab of a new playbook. The Triggers panel is searched for nextron and lists the Nextron Valhalla integration with the trigger Sync Valhalla Sigma rules into Sekoia Rules Catalog.](../images/valhalla-playbook-trigger.png)
+   ![The Workflow tab of a new playbook. The Triggers panel is searched for nextron and lists the Nextron Valhalla integration with the trigger Sync Valhalla Sigma rules into Sekoia Rules Catalog.](../images/sekoia-valhalla-sigma-rules-integration/valhalla-playbook-trigger.png)
 
 4. Create an **account** for the trigger (see [Trigger account](#3-trigger-account)).
 5. Create a **configuration** for the trigger (see [Trigger configuration](#4-trigger-configuration)). The defaults are a good start.
@@ -42,13 +42,13 @@ You need two API keys.
 
 When the sync has finished, open **Configure → Rules Catalog** and filter by the tag `nextron-valhalla` to see the imported rules.
 
-![The Sekoia Rules Catalog after a sync. Imported rules such as Webshell Detection With Command Line Keywords and Mimikatz Use come from Nextron Systems LLC and carry the tags nextron-valhalla, status-test and their Valhalla uuid tag, plus their MITRE ATT&CK tags.](../images/valhalla-rules-catalog.png)
+![The Sekoia Rules Catalog after a sync. Imported rules such as Webshell Detection With Command Line Keywords and Mimikatz Use come from Nextron Systems LLC and carry the tags nextron-valhalla, status-test and their Valhalla uuid tag, plus their MITRE ATT&CK tags.](../images/sekoia-valhalla-sigma-rules-integration/valhalla-rules-catalog.png)
 
 ## 3. Trigger account
 
 The account holds the connection details.
 
-![The Add new account dialog of the Nextron Valhalla integration, with the fields Community Uuid, Sekoia Api Key, Sekoia Base Url (default https://api.sekoia.io) and Valhalla Api Key (prefilled with the demo key).](../images/valhalla-trigger-account.png)
+![The Add new account dialog of the Nextron Valhalla integration, with the fields Community Uuid, Sekoia Api Key, Sekoia Base Url (default https://api.sekoia.io) and Valhalla Api Key (prefilled with the demo key).](../images/sekoia-valhalla-sigma-rules-integration/valhalla-trigger-account.png)
 
 | Setting | What to enter |
 |---|---|
@@ -63,7 +63,7 @@ Both API keys are hidden once you save the account.
 
 The trigger configuration controls which rules are imported and how.
 
-![The Configuration tab of the Sync Valhalla Sigma rules into Sekoia Rules Catalog trigger, with the fields Name, enabled, Frequency, disable_removed, min_sigma_level, min_sigma_status and Preserve Rule Names.](../images/valhalla-trigger-configuration.png)
+![The Configuration tab of the Sync Valhalla Sigma rules into Sekoia Rules Catalog trigger, with the fields Name, enabled, Frequency, disable_removed, min_sigma_level, min_sigma_status and Preserve Rule Names.](../images/sekoia-valhalla-sigma-rules-integration/valhalla-trigger-configuration.png)
 
 | Setting | Default | What it does |
 |---|---|---|
